@@ -28,5 +28,6 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);
 
+        transform.rotation = Quaternion.LookRotation(moveDirection);
     }
 }
