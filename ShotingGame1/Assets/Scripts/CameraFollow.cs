@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float smoothing = 5f;
+    public Transform target;        //Camera가 따라오는 위치
+    public float smoothing = 5f;    //부드러운 정도
 
-    Vector3 offset;
+    Vector3 offset;     
 
     void Start()
     {
