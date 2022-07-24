@@ -4,27 +4,27 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    float hp;
+    [SerializeField] float hp;
     public float HP
     {
         get { return hp; }
         set { hp = value; }
     }
-    float speed;
+    [SerializeField] float speed = 5.0f;
     public float Speed
     {
         get { return speed; }
         set { speed = value; }
     }
 
-    float power;
+     [SerializeField] float power;
     public float Power
     {
         get { return power; }
         set { power = value; }
     }
 
-    float attackSpeed;
+     [SerializeField] float attackSpeed;
     public float AttackSpeed
     {
         get { return attackSpeed; }

@@ -5,7 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerStatus status;
-   
+    Camera chracterCamera;
+
+
     float moveSpeed //이동 속도
     {
         get
@@ -25,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     {
         status = GetComponent<PlayerStatus>();
         characterController = GetComponent<CharacterController>();
+        chracterCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+
     }
 
     void Update()
@@ -50,7 +54,8 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);   //이동
 
-        transform.rotation = Quaternion.LookRotation(lookDirection);            //이동 방향으로 회전
+        LookMouseCurser();
+
     }
 
     Vector3 MoveTo(Vector3 direction)
@@ -62,5 +67,16 @@ public class PlayerMovement : MonoBehaviour
     {
         if (characterController.isGrounded == true)
             moveDirection.y = jumpForce;
+    }
+
+    void LookMouseCurser()
+    {
+        Ray ray = chracterCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+        {
+            Vector3 mouseDir = new Vector3(hit.point.x,transform.position.y,hit.point.z) - transform.position;
+            transform.forward = mouseDir;
+        }
     }
 }
