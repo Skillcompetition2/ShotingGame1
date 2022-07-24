@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5.0f;    //이동 속도
+    PlayerStatus status;
+   
+    float moveSpeed //이동 속도
+    {
+        get
+        {
+            return status.Speed;
+        }
+    }
+
     [SerializeField] float jumpForce = 3.0f;
     float gravity = -9.81f;
     Vector3 moveDirection;                      //이동 방향
@@ -14,18 +23,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        status = GetComponent<PlayerStatus>();
         characterController = GetComponent<CharacterController>();
     }
 
     void Update()
     {
-
-        if (characterController.isGrounded == false)        //바닥 충돌 체크 
-            moveDirection.y += gravity * Time.deltaTime;    //y축 감소
-
         //점프 체크
         if (Input.GetKeyDown(KeyCode.Space))
             JumpTo();
+
+
+        if (characterController.isGrounded == false)        //바닥 충돌 체크 
+            moveDirection.y += gravity * Time.deltaTime;    //y축 감소
 
         Move();
     } 
@@ -46,7 +56,6 @@ public class PlayerMovement : MonoBehaviour
     Vector3 MoveTo(Vector3 direction)
     {
         return new Vector3(direction.x, moveDirection.y, direction.z);         //방향 벡터 구하기
-
     }
 
     void JumpTo()
