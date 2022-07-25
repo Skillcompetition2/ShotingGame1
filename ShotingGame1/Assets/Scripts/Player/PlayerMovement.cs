@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpForce = 3.0f;
     float gravity = -9.81f;
     Vector3 moveDirection;                      //이동 방향
-    Vector3 lookDirection;                      //바라보는 방향
+    public Vector3 lookDirection;                      //마우스 방향
 
     CharacterController characterController;
 
@@ -50,7 +50,6 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxisRaw("Vertical"); 
 
         moveDirection =  MoveTo(new Vector3 (x, 0, z));
-        lookDirection = new Vector3 (x, 0, z);
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);   //이동
 
@@ -75,8 +74,8 @@ public class PlayerMovement : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(ray, out hit))
         {
-            Vector3 mouseDir = new Vector3(hit.point.x,transform.position.y,hit.point.z) - transform.position;
-            transform.forward = mouseDir;
+            lookDirection = new Vector3(hit.point.x,transform.position.y,hit.point.z) - transform.position;
+            transform.forward = lookDirection;
         }
     }
 }

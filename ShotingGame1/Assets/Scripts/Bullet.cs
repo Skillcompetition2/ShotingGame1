@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     bool isFire;
     Vector3 direction;      //총알이 날아가는 방향
-    float speed;
+    [SerializeField] float speed;
 
     // Start is called before the first frame update
     void Start()
