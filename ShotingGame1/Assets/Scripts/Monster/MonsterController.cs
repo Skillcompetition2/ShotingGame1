@@ -24,6 +24,12 @@ public class MonsterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (monsterMove.isDead)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         if (monsterMove.isArrival)
             Attack();
         else

@@ -14,6 +14,7 @@ public class MonsterMove : MonoBehaviour
     public bool isDead;
 
     Animator anim;
+    bool isDeadCoroutine;
 
     private void Awake()
     {
@@ -36,7 +37,6 @@ public class MonsterMove : MonoBehaviour
             Dead();
             return;
         }
-
 
         if (!isMoveStart)
             anim.SetTrigger("idle");
@@ -66,15 +66,25 @@ public class MonsterMove : MonoBehaviour
 
     void Dead()
     {
+        if (isDeadCoroutine)
+            return;
         StartCoroutine(DeadAnim());
     }
 
     IEnumerator DeadAnim()
     {
-        anim.SetTrigger("Dead");
+        
+        isDeadCoroutine = true;
+        anim.SetTrigger("die");
         while (true)
         {
+            if (anim.GetCurrentAnimatorStateInfo(0).IsName("die") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+            {
+                Destroy(gameObject, 2f);
+                yield break;
+            }
 
+            yield return new WaitForEndOfFrame();
         }
     }
 }
