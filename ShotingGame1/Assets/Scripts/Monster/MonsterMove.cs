@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class MonsterMove : MonoBehaviour
 {
+    MonsterStatus monsterStatus;
+
     [SerializeField] Transform target;
     NavMeshAgent agent;
     public bool isMoveStart;                 //이동 중
@@ -14,6 +16,7 @@ public class MonsterMove : MonoBehaviour
 
     private void Awake()
     {
+        monsterStatus = GetComponent<MonsterStatus>();
         anim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
@@ -21,7 +24,7 @@ public class MonsterMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        agent.speed = monsterStatus.Speed;
     }
 
     // Update is called once per frame
@@ -34,9 +37,6 @@ public class MonsterMove : MonoBehaviour
         }
 
         isArrival = isMoveStart && agent.remainingDistance <= 10f;  //목적지에 도착 하였는가
-        
-
-
 
         agent.SetDestination(target.position);
     }
