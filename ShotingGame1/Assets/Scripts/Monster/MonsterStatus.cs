@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MonsterStatus : MonoBehaviour
 {
-    
+    MonsterMove monsterMove;
 
     [SerializeField] float attack_amount; 
     public float Attak_amount
@@ -34,8 +34,14 @@ public class MonsterStatus : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {
+        monsterMove = GetComponent<MonsterMove>();
+    }
+
     void Dead()
     {
+        monsterMove.isDead = true;
         Debug.Log("Á×À½");
     }
 }

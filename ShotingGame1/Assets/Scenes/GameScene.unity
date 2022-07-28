@@ -178,6 +178,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9522842, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Bip001 Xtra08'\n\tTransform 'Bip001 Xtra08Opp'\n\tTransform
+        'Bip001 Xtra08'\n\tTransform 'Bip001 Xtra08Opp'\n\tTransform 'Bip001 Xtra08'\n\tTransform
+        'Bip001 Xtra08Opp'\n\tFrom animation clip 'idle'\n\tFrom animation clip 'jump_left'\n\tFrom
+        animation clip 'dizzy'\n\tFrom animation clip 'jump_right'\n\tFrom animation
+        clip 'go'\n\tFrom animation clip 'run'\n\tFrom animation clip 'attack_01'\n\tFrom
+        animation clip 'attack_02'\n\tFrom animation clip 'attack_03'\n\tFrom animation
+        clip 'damage'\n\tand more ..."
+      objectReference: {fileID: 0}
     - target: {fileID: 13761724, guid: b89e0c3c675d2f6468bb44ecbf17fb04, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -242,6 +254,7 @@ MonoBehaviour:
   target: {fileID: 1857298408}
   isMoveStart: 0
   isArrival: 0
+  isDead: 0
 --- !u!114 &269346381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1311,8 +1324,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 100
   speed: 10
-  power: 0
-  attack_Amount: 5
+  power: 5
+  attackSpeed: 2
 --- !u!4 &1857298408 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5962506490023211491, guid: 99f7c8f093b0a53498977df82047195b, type: 3}

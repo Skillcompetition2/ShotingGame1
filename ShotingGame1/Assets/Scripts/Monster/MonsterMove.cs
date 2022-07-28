@@ -31,6 +31,13 @@ public class MonsterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDead)
+        {
+            Dead();
+            return;
+        }
+
+
         if (!isMoveStart)
             anim.SetTrigger("idle");
 
@@ -59,6 +66,15 @@ public class MonsterMove : MonoBehaviour
 
     void Dead()
     {
+        StartCoroutine(DeadAnim());
+    }
 
+    IEnumerator DeadAnim()
+    {
+        anim.SetTrigger("Dead");
+        while (true)
+        {
+
+        }
     }
 }

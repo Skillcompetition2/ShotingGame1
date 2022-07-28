@@ -37,7 +37,7 @@ public class PlayerShooter : MonoBehaviour
     void Fire()
     {
         var bullet = Instantiate(BulletPrefab, firePos.position, Quaternion.identity).GetComponent<Bullet>();
-        bullet.attack_amount = playerMovement.status.AttackAmount;
+        bullet.Init(playerMovement.status.AttackSpeed, playerMovement.status.Power);
         bullet.Fire(playerMovement.lookDirection);
 
     }

@@ -8,7 +8,14 @@ public class PlayerStatus : MonoBehaviour
     public float HP
     {
         get { return hp; }
-        set { hp = value; }
+        set { 
+            hp = value; 
+            if(hp >= 0)
+            {
+                Dead();
+            }
+        
+        }
     }
     [SerializeField] float speed = 5.0f;
     public float Speed
@@ -24,11 +31,11 @@ public class PlayerStatus : MonoBehaviour
         set { power = value; }
     }
 
-    [SerializeField] float attack_Amount;
-    public float AttackAmount
+    [SerializeField] float attackSpeed;
+    public float AttackSpeed
     {
-        get { return attack_Amount; }
-        set { attack_Amount = value; }
+        get { return attackSpeed; }
+        set { attackSpeed = value; }
     }
 
     void Dead()
