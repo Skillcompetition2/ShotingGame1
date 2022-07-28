@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     bool isFire;
     Vector3 direction;      //총알이 날아가는 방향
     [SerializeField] float speed;
+    public float attack_amount;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.TryGetComponent(out MonsterStatus monster)){
+            Debug.Log("닿았다");
+            monster.HP -= attack_amount;
+        }
+
+
         if (other.GetComponent<Bullet>() == null)
             Destroy(gameObject);
+
     }
 }

@@ -17,29 +17,22 @@ public class PlayerStatus : MonoBehaviour
         set { speed = value; }
     }
 
-     [SerializeField] float power;
+    [SerializeField] float power;
     public float Power
     {
         get { return power; }
         set { power = value; }
     }
 
-     [SerializeField] float attackSpeed;
-    public float AttackSpeed
+    [SerializeField] float attack_Amount;
+    public float AttackAmount
     {
-        get { return attackSpeed; }
-        set { attackSpeed = value; }
+        get { return attack_Amount; }
+        set { attack_Amount = value; }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Dead()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Debug.Log("플레이어 죽음");
     }
 }

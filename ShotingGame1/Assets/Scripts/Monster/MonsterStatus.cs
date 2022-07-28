@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MonsterStatus : MonoBehaviour
 {
+    
+
     [SerializeField] float attack_amount; 
     public float Attak_amount
     {
@@ -17,4 +19,23 @@ public class MonsterStatus : MonoBehaviour
         set { speed = value; }
     }
 
+    [SerializeField] float hp;
+    public float HP
+    {
+        get { return hp; }
+        set {
+            
+            hp = value; 
+            if(hp <= 0)
+            {
+                Dead();
+            }
+        
+        }
+    }
+
+    void Dead()
+    {
+        Debug.Log("Á×À½");
+    }
 }

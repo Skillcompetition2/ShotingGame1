@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerStatus status;
+    public PlayerStatus status;
     Camera chracterCamera;
     Animator anim;
     bool isMove;

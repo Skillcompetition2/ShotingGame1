@@ -11,6 +11,7 @@ public class MonsterMove : MonoBehaviour
     NavMeshAgent agent;
     public bool isMoveStart;                 //이동 중
     public bool isArrival;
+    public bool isDead;
 
     Animator anim;
 
@@ -30,6 +31,9 @@ public class MonsterMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isMoveStart)
+            anim.SetTrigger("idle");
+
         if (agent.velocity.sqrMagnitude > 0f) //출발 하였는가 
         {
             isMoveStart = true;
@@ -38,6 +42,23 @@ public class MonsterMove : MonoBehaviour
 
         isArrival = isMoveStart && agent.remainingDistance <= 10f;  //목적지에 도착 하였는가
 
-        agent.SetDestination(target.position);
+        FindPlayer();
+    }
+
+    void FindPlayer()
+    {
+        Collider[] colls = Physics.OverlapSphere(transform.position, 50.0f);
+        for (int i = 0; i < colls.Length; i++)
+        {
+            if(colls[i].CompareTag("Player"))
+                agent.SetDestination(target.position);
+
+        }
+
+    }
+
+    void Dead()
+    {
+
     }
 }
