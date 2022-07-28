@@ -7,7 +7,7 @@ public class MonsterController : MonoBehaviour
     MonsterMove monsterMove;
     Animator anim;
 
-    bool isAttackCoroutine;
+    [SerializeField] bool isAttackCoroutine;
 
     private void Awake()
     {
@@ -26,6 +26,15 @@ public class MonsterController : MonoBehaviour
     {
         if (monsterMove.isArrival)
             Attack();
+        else
+        {
+            if (isAttackCoroutine)
+            {
+                StopCoroutine(AttackCoroutine());
+                isAttackCoroutine = false;
+            }
+            
+        }
     }
 
     void Attack()
@@ -38,6 +47,7 @@ public class MonsterController : MonoBehaviour
 
     IEnumerator AttackCoroutine()
     {
+
         isAttackCoroutine = true;
         anim.SetTrigger("attack_01");
         Debug.Log("АјАн");

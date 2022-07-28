@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     PlayerStatus status;
     Camera chracterCamera;
-
+    Animator anim;
+    bool isMove;
 
     float moveSpeed //이동 속도
     {
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        anim = GetComponent<Animator>();
         status = GetComponent<PlayerStatus>();
         characterController = GetComponent<CharacterController>();
         chracterCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
@@ -37,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             JumpTo();
 
+        anim.SetBool("isMove", isMove);
 
         if (characterController.isGrounded == false)        //바닥 충돌 체크 
             moveDirection.y += gravity * Time.deltaTime;    //y축 감소
@@ -53,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
 
         characterController.Move(moveDirection * moveSpeed * Time.deltaTime);   //이동
 
+        isMove = (x != 0 || z != 0);
+
+
         LookMouseCurser();
 
     }
@@ -65,7 +71,11 @@ public class PlayerMovement : MonoBehaviour
     void JumpTo()
     {
         if (characterController.isGrounded == true)
+        {
+            anim.SetTrigger("isJump");
             moveDirection.y = jumpForce;
+
+        }
     }
 
     void LookMouseCurser()
